@@ -7,6 +7,8 @@
 - Sign In Page
 - Sign Up Page
 - Form Validation
+- Firebase Setup
+- Deploying our app to Production
 
 # Features
 
