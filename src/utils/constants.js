@@ -6,3 +6,12 @@ export const USER =
 
 export const BACKGROUND =
   "https://assets.nflxext.com/ffe/siteui/vlv3/29b665f6-0a62-4745-b9c2-f617fb7eadc6/web/IN-en-20251208-TRIFECTA-perspective_c78aea89-8f13-4e2c-ba7a-f9b40f53bf8c_large.jpg";
+
+export const API_OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MTIzZjk1MDJkYmVmY2JmNWE0YjU3NGEzOTc2ZjgyZCIsIm5iZiI6MTc2NTg4MzgxMS40MDk5OTk4LCJzdWIiOiI2OTQxM2ZhMzM3NmI4YTJmYmRhMDQwMWYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.GydxEbMACyB0D-0qQZePBVIpzWo4zxdqh8Vaik7WU7c",
+  },
+};

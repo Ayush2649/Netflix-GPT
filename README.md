@@ -16,6 +16,9 @@
 - Implemented SignOut
 - Updated Profile
 - BugFix: If th euser is not logged in, redirect from /browse to /signin and vice versa
+- Add hardcoded values to the constants file
+- Register to TMDB API and create an app and get Access Token
+- Get data from TMDB Now playing movies list API
 
 # Features
 

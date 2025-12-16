@@ -7,7 +7,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { BACKGROUND } from "../utils/constants";
+import { BACKGROUND } from "../utils/constants"; 
 
 const SignIn = () => {
   const navigate = useNavigate();
