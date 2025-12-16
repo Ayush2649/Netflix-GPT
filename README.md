@@ -13,6 +13,9 @@
 - Implement Sign In User Api
 - Authentication
 - Created Redux Store with userSlice
+- Implemented SignOut
+- Updated Profile
+- BugFix: If th euser is not logged in, redirect from /browse to /signin and vice versa
 
 # Features
 

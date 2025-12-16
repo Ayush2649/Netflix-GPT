@@ -1,46 +1,49 @@
-import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Header from "./Header";
 import SignUp from "./SignUp";
-import Browse from "./Browse";
 import SignIn from "./SignIn";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../utils/firebase";
-import { useDispatch } from "react-redux";
-import { addUser, removeUser } from "../utils/userSlice";
+import Browse from "./Browse";
+
+import ProtectedRoute from "./ProtectedRoute";
+import PublicRoute from "./PublicRoute";
 
 const Body = () => {
-    const dispatch = useDispatch();
-  const appRouter = createBrowserRouter([
-    {
-      path: "/",
-      element: <SignUp />,
-    },
-    {
-      path: "/browse",
-      element: <Browse />,
-    },
-    {
-      path: "/signin",
-      element: <SignIn />,
-    },
-  ]);
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) { 
-        const {uid, email, displayName} = user;
-        dispatch(addUser({uid: uid, email: email, displayName: displayName}));
-      } else {
-        dispatch(removeUser()); 
-      }
-    });
-  }, []);
-
   return (
-    <div>
-      <RouterProvider router={appRouter} />
-    </div>
+    <>
+      <Header />
+
+      <Routes>
+        {/* ❌ Logged-in users CANNOT access "/" */}
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <SignUp />
+            </PublicRoute>
+          }
+        />
+
+        {/* ❌ Logged-in users CANNOT access "/signin" */}
+        <Route
+          path="/signin"
+          element={
+            <PublicRoute>
+              <SignIn />
+            </PublicRoute>
+          }
+        />
+
+        {/* ❌ Logged-out users CANNOT access "/browse" */}
+        <Route
+          path="/browse"
+          element={
+            <ProtectedRoute>
+              <Browse />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </>
   );
 };
 

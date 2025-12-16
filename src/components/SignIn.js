@@ -7,6 +7,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { BACKGROUND } from "../utils/constants";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const SignIn = () => {
       {/* 🔥 BACKGROUND IMAGE */}
       <img
         className="absolute inset-0 h-full w-full object-cover -z-10"
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/29b665f6-0a62-4745-b9c2-f617fb7eadc6/web/IN-en-20251208-TRIFECTA-perspective_c78aea89-8f13-4e2c-ba7a-f9b40f53bf8c_large.jpg"
+        src={BACKGROUND}
         alt="bg"
       />
 

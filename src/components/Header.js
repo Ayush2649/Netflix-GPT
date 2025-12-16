@@ -1,14 +1,18 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { removeUser } from "../utils/userSlice";
 import { useState, useRef, useEffect } from "react";
+import { removeUser } from "../utils/userSlice";
+import { LOGO, USER } from "../utils/constants";
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation(); // ✅ detect route
   const dispatch = useDispatch();
+
   const user = useSelector((store) => store.user);
+  const isBrowsePage = location.pathname === "/browse"; // ✅ check page
 
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
@@ -19,7 +23,7 @@ const Header = () => {
     navigate("/");
   };
 
-  // ✅ Close dropdown when clicking outside
+  // ✅ Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -28,10 +32,7 @@ const Header = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
@@ -44,26 +45,17 @@ const Header = () => {
         {/* Logo */}
         <img
           className="w-48 cursor-pointer"
-          src="https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production_2025-12-03/consent/87b6a5c0-0104-4e96-a291-092c11350111/019ae4b5-d8fb-7693-90ba-7a61d24a8837/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+          src={LOGO}
           alt="Netflix"
           onClick={() => navigate(user ? "/browse" : "/")}
         />
 
         {/* Right Section */}
-        {!user ? (
-          <button
-            onClick={() => navigate("/signin")}
-            className="bg-red-600 text-white text-sm font-medium
-                       px-3.5 py-1.5 rounded
-                       hover:bg-red-700 transition"
-          >
-            Sign In
-          </button>
-        ) : (
+        {user && isBrowsePage ? (
           <div className="relative" ref={menuRef}>
             {/* Avatar */}
             <img
-              src="https://occ-0-7769-2186.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABUMx6z-7bB7tyN-OZXt6i8BXuZHN5EWBr7MQy7ilhubrpI2yOofVtT-QmoO6VJt7I1ewosmuQa29BGFfOOVcJxdKx1sT-co.png?r=201"
+              src={USER}
               alt="User"
               className="w-9 h-9 rounded cursor-pointer"
               onClick={() => setShowMenu((prev) => !prev)}
@@ -73,11 +65,11 @@ const Header = () => {
             {showMenu && (
               <div
                 className="absolute right-0 mt-2
-                           bg-black border text-white border-gray-700
-                           rounded shadow-lg w-52"
+                           bg-black border border-gray-700
+                           text-white rounded shadow-lg w-52"
               >
                 <div className="px-4 py-3 border-b border-gray-700">
-                  <p className="text-sm font-medium text-white">
+                  <p className="text-sm font-medium">
                     {user.displayName || "Netflix User"}
                   </p>
                   <p className="text-xs text-gray-400 truncate">
@@ -96,6 +88,15 @@ const Header = () => {
               </div>
             )}
           </div>
+        ) : (
+          <button
+            onClick={() => navigate("/signin")}
+            className="bg-red-600 text-white text-sm font-medium
+                       px-3.5 py-1.5 rounded
+                       hover:bg-red-700 transition"
+          >
+            Sign In
+          </button>
         )}
       </div>
     </div>
