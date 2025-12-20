@@ -1,9 +1,14 @@
-import React from 'react'
+import MovieList from "./MovieList";
 
-const GptMovieSuggestion = () => {
+const GptMovieSuggestion = ({ movies }) => {
   return (
-    <div>GptMovieSuggestion</div>
-  )
-}
+    <div className="mt-10 bg-black bg-opacity-90">
+      <MovieList
+        title="Results for your search"
+        movies={movies}
+      />
+    </div>
+  );
+};
 
-export default GptMovieSuggestion
+export default GptMovieSuggestion;
