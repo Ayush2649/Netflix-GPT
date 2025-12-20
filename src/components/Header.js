@@ -4,7 +4,9 @@ import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useState, useRef, useEffect } from "react";
 import { removeUser } from "../utils/userSlice";
-import { LOGO, USER } from "../utils/constants";
+import { LOGO, SUPPORTED_LANGUAGES, USER } from "../utils/constants";
+import { toggleGptSearch } from "../utils/gptSlice";
+import { setLanguage } from "../utils/configSlice";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ const Header = () => {
 
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
+  const showGptSearch = useSelector((state) => state.gpt.showGptSearch);
 
   const handleSignOut = async () => {
     await signOut(auth);
@@ -35,6 +38,15 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleGptSeachClick = () => {
+    dispatch(toggleGptSearch());
+  };
+
+  const handleLanguageChange = (e) => {
+    const selectedLanguage = e.target.value;
+    dispatch(setLanguage(selectedLanguage));
+  };
+
   return (
     <div className="fixed top-0 left-0 w-full z-50">
       <div
@@ -52,7 +64,29 @@ const Header = () => {
 
         {/* Right Section */}
         {user && isBrowsePage ? (
-          <div className="relative" ref={menuRef}>
+          <div ref={menuRef} className="relative flex items-center gap-3">
+            {showGptSearch && (
+              <select
+                className="p-2 m-2 bg-black text-white rounded"
+                onChange={handleLanguageChange}
+              >
+                {SUPPORTED_LANGUAGES.map((lang) => (
+                  <option key={lang.identifier} value={lang.identifier}>
+                    {lang.name}
+                  </option>
+                ))}
+              </select>
+            )}
+            {/* GPT Search Button */}
+            <button
+              className="px-4 py-3 text-sm font-semibold
+                 bg-transparent text-white rounded
+                 hover:bg-black transition"
+              onClick={handleGptSeachClick}
+            >
+              {showGptSearch ? "Home Page" : "GPT Search"}
+            </button>
+
             {/* Avatar */}
             <img
               src={USER}
@@ -64,24 +98,22 @@ const Header = () => {
             {/* Dropdown */}
             {showMenu && (
               <div
-                className="absolute right-0 mt-2
-                           bg-black border border-gray-700
-                           text-white rounded shadow-lg w-52"
+                className="absolute right-0 top-12
+                   bg-black border border-gray-700
+                   text-white rounded shadow-lg w-52"
               >
                 <div className="px-4 py-3 border-b border-gray-700">
                   <p className="text-sm font-medium">
                     {user.displayName || "Netflix User"}
                   </p>
-                  <p className="text-xs text-gray-400 truncate">
-                    {user.email}
-                  </p>
+                  <p className="text-xs text-gray-400 truncate">{user.email}</p>
                 </div>
 
                 <button
                   onClick={handleSignOut}
                   className="block w-full text-left
-                             px-4 py-2 text-sm
-                             hover:bg-gray-800"
+                     px-4 py-2 text-sm
+                     hover:bg-gray-800"
                 >
                   Sign out
                 </button>

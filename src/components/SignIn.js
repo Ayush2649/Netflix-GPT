@@ -29,7 +29,7 @@ const SignIn = () => {
           password
         );
         await updateProfile(userCred.user, { displayName: name });
-        console.log("User signed up:", userCred.user);
+        // console.log("User signed up:", userCred.user);
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
