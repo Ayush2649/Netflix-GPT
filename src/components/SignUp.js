@@ -38,48 +38,68 @@ const Login = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
-        <h1 className="text-4xl md:text-6xl font-black leading-tight max-w-3xl">
-          Unlimited movies,
+        <h1
+          className="
+  text-3xl sm:text-4xl md:text-6xl
+  font-black
+  leading-tight
+  max-w-3xl
+"
+        >
+          Unlimited movies, shows, and more.
         </h1>
 
-        <h1 className="text-4xl md:text-6xl font-black leading-tight max-w-3xl">
-         shows, and more.
-        </h1>
-
-        <h2 className="text-lg md:text-2xl mt-4">
+        <h2 className="text-base sm:text-lg md:text-2xl mt-3 md:mt-4">
           Starts at ₹149. Cancel anytime.
         </h2>
 
-        <p className="mt-6 text-sm md:text-lg max-w-2xl">
+        <p className="mt-4 md:mt-6 text-sm md:text-lg max-w-2xl">
           Ready to watch? Enter your email to create or restart your membership.
         </p>
 
         {/* Email + Button */}
-        <div className="mt-6 w-full max-w-xl">
-          <div className="flex flex-col sm:flex-row gap-3">
-            <input
-              type="email"
-              placeholder="Email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 h-14 px-4 text-lg text-white
-                         bg-black/60 border border-gray-400/50
-                         rounded-sm placeholder-gray-400
-                         focus:outline-none focus:border-white"
-            />
+        <div className="mt-6 w-full max-w-xl grid grid-cols-12 gap-3">
+          {/* Email input → 75% */}
+          <input
+            type="email"
+            placeholder="Email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="
+      col-span-7 md:col-span-8
+      h-12 sm:h-14
+      px-4
+      text-base sm:text-lg
+      text-white
+      bg-black/60
+      border border-gray-400/50
+      rounded-sm
+      placeholder-gray-400
+      focus:outline-none focus:border-white
+    "
+          />
 
-            <button
-              onClick={handleGetStarted}
-              className="h-14 px-6 bg-red-600 text-white
-                         text-lg font-semibold rounded-sm
-                         hover:bg-red-700 transition"
-            >
-              Get Started →
-            </button>
-          </div>
+          {/* Button → 25% */}
+          <button
+            onClick={handleGetStarted}
+            className="
+      col-span-5 md:col-span-4
+      h-12 sm:h-14
+      px-6
+      bg-red-600
+      text-white
+      text-base sm:text-lg
+      font-semibold
+      rounded-sm
+      hover:bg-red-700
+      transition
+    "
+          >
+            Get Started →
+          </button>
 
           {errors.email && (
-            <p className="text-[#e87c03] text-sm mt-2 text-left">
+            <p className="col-span-12 text-[#e87c03] text-sm mt-2 text-left">
               {errors.email}
             </p>
           )}

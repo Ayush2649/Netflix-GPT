@@ -50,13 +50,16 @@ const Header = () => {
   return (
     <div className="fixed top-0 left-0 w-full z-50">
       <div
-        className="flex items-center justify-between
-                   px-6 md:px-14 py-4
-                   bg-gradient-to-b from-black via-transparent to-transparent"
+        className="
+    flex items-center justify-between
+    px-4 md:px-10
+    py-3 md:py-4
+    bg-gradient-to-b from-black/90 via-black/40 to-transparent
+  "
       >
         {/* Logo */}
         <img
-          className="w-48 cursor-pointer"
+          className="w-28 md:w-40 lg:w-48 cursor-pointer"
           src={LOGO}
           alt="Netflix"
           onClick={() => navigate(user ? "/browse" : "/")}
@@ -64,10 +67,18 @@ const Header = () => {
 
         {/* Right Section */}
         {user && isBrowsePage ? (
-          <div ref={menuRef} className="relative flex items-center gap-3">
+          <div
+            ref={menuRef}
+            className="relative flex items-center gap-2 md:gap-4"
+          >
+            {/* Language Selector (only when GPT Search ON) */}
             {showGptSearch && (
               <select
-                className="p-2 m-2 bg-black text-white rounded"
+                className="
+                p-2 bg-black text-white
+                border border-gray-600
+                rounded text-sm
+              "
                 onChange={handleLanguageChange}
               >
                 {SUPPORTED_LANGUAGES.map((lang) => (
@@ -77,30 +88,38 @@ const Header = () => {
                 ))}
               </select>
             )}
+
             {/* GPT Search Button */}
             <button
-              className="px-4 py-3 text-sm font-semibold
-                 bg-transparent text-white rounded
-                 hover:bg-black transition"
+              className="
+              px-3 md:px-4 py-1.5 md:py-2
+              text-xs md:text-sm font-semibold
+              text-white bg-black/40
+              rounded hover:bg-black
+              transition
+            "
               onClick={handleGptSeachClick}
             >
-              {showGptSearch ? "Home Page" : "GPT Search"}
+              {showGptSearch ? "Home" : "GPT Search"}
             </button>
 
             {/* Avatar */}
             <img
               src={USER}
               alt="User"
-              className="w-9 h-9 rounded cursor-pointer"
+              className="w-8 h-8 md:w-9 md:h-9 rounded cursor-pointer"
               onClick={() => setShowMenu((prev) => !prev)}
             />
 
             {/* Dropdown */}
             {showMenu && (
               <div
-                className="absolute right-0 top-12
-                   bg-black border border-gray-700
-                   text-white rounded shadow-lg w-52"
+                className="
+                absolute right-0 top-10
+                bg-black border border-gray-700
+                text-white rounded shadow-lg
+                w-48
+              "
               >
                 <div className="px-4 py-3 border-b border-gray-700">
                   <p className="text-sm font-medium">
@@ -111,9 +130,11 @@ const Header = () => {
 
                 <button
                   onClick={handleSignOut}
-                  className="block w-full text-left
-                     px-4 py-2 text-sm
-                     hover:bg-gray-800"
+                  className="
+                  block w-full text-left
+                  px-4 py-2 text-sm
+                  hover:bg-gray-800
+                "
                 >
                   Sign out
                 </button>
@@ -123,9 +144,13 @@ const Header = () => {
         ) : (
           <button
             onClick={() => navigate("/signin")}
-            className="bg-red-600 text-white text-sm font-medium
-                       px-3.5 py-1.5 rounded
-                       hover:bg-red-700 transition"
+            className="
+            bg-red-600 text-white
+            text-xs md:text-sm font-medium
+            px-3 md:px-4 py-1.5 md:py-2
+            rounded hover:bg-red-700
+            transition
+          "
           >
             Sign In
           </button>

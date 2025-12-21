@@ -1,22 +1,28 @@
 import { useSelector } from "react-redux";
+import { useRef } from "react";
 import VideoTitle from "./VideoTitle";
 import VideoBackground from "./VideoBackground";
 
 const MainContainer = () => {
   const movies = useSelector((store) => store.movies?.nowPlayingMovies);
+  const mainMovieRef = useRef(null);
+
   if (!movies) return null;
 
-  const mainMovie = movies[Math.floor(Math.random() * movies.length)];
-  const { original_title, overview, id, backdrop_path } = mainMovie;
+  // ✅ pick ONCE
+  if (!mainMovieRef.current) {
+    mainMovieRef.current =
+      movies[Math.floor(Math.random() * movies.length)];
+  }
+
+  const { original_title, overview, id } = mainMovieRef.current;
 
   return (
-    // 👇 overflow-hidden is CRITICAL
-    <div className="relative h-screen w-screen overflow-hidden">
-      <VideoBackground movieId={id} backdropPath={backdrop_path} />
+    <div className="relative w-screen h-[60vh] md:h-screen overflow-hidden">
+      <VideoBackground movieId={id} />
       <VideoTitle title={original_title} overview={overview} />
     </div>
   );
 };
 
 export default MainContainer;
-  

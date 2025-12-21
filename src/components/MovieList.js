@@ -7,11 +7,19 @@ const MovieList = ({ title, movies }) => {
   if (!movies || movies.length === 0) return null;
 
   return (
-    <div className="px-6 pb-3">
-      <h1 className="text-lg py-4 text-red-700 font-bold text-xl">{title}</h1>
+    <div className="px-4 md:px-8 pb-4">
+      <h1 className="text-base md:text-3xl py-3 text-red-700 font-bold">
+        {title}
+      </h1>
 
-      <div className="flex overflow-x-scroll scrollbar-hide">
-        {movies?.map((movie) => (
+      <div
+        className="
+      pl-4 -ml-4 md:-ml-10 md:pl-10
+      flex gap-4
+      overflow-x-scroll scrollbar-hide
+    "
+      >
+        {movies.map((movie) => (
           <MovieCard
             key={movie.id}
             posterPath={movie.poster_path}
