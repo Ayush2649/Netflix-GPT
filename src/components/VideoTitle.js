@@ -1,10 +1,11 @@
 import React from "react";
+import MovieDescription from "./MovieDescription";
 
-const VideoTitle = ({ title, overview }) => {
+const VideoTitle = ({ title, overview, }) => {
   return (
     <div className="pt-[15%] px-[5%] absolute text-white">
       <h1 className="text-6xl font-bold">{title}</h1>
-      <p className="py-5 text-lg w-1/3">{overview}</p>
+      <MovieDescription overview={overview} />
       <div className="flex gap-4 mt-6">
         {/* Play Button */}
         <button

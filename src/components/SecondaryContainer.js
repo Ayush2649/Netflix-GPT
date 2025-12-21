@@ -12,10 +12,9 @@ const SecondaryContainer = () => {
     <div className="bg-black">
       <div className="-mt-36 pl-12 relative z-10">
         <Movielist title={"Now Playing"} movies={NowPlayingMovies} />
-        <Movielist title={"Trending"} movies={PopularMovies} />
         <Movielist title={"Top Rated"} movies={TopRatedMovies} />
         <Movielist title={"Upcoming Movies"} movies={UpComingMovies} />
-        <Movielist title={"Critic's Choice"} movies={NowPlayingMovies} />
+        <Movielist title={"Trending"} movies={PopularMovies} />
       </div>
     </div>
   )
