@@ -23,6 +23,8 @@ The project focuses on building a real-world scalable frontend application with 
 
 > 📌 A full working demo video of Netflix GPT is available in the repository or linked externally.
 
+https://github.com/user-attachments/assets/dd32e4e1-b231-4c0e-8f00-2928b28b8ef0
+
 ---
 
 ## 📸 Screenshots
