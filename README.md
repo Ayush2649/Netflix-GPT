@@ -1,7 +1,8 @@
 # 🎬 Netflix GPT
 
-Netflix GPT is a modern, Netflix-inspired movie browsing application built using **React**, **Tailwind CSS**, **Firebase**, **Redux**, **TMDB API**, and **OpenAI-powered GPT Search**.  
-The project focuses on real-world frontend architecture, authentication flows, API integration, performance optimization, and clean UI/UX.
+Netflix GPT is a Netflix-inspired, AI-powered movie discovery application built using **React**, **Tailwind CSS**, **Firebase**, **Redux Toolkit**, **TMDB API**, and **OpenAI GPT**.
+
+The project focuses on building a real-world scalable frontend application with authentication, protected routing, API integration, state management, and AI-based search functionality.
 
 ---
 
@@ -12,21 +13,61 @@ The project focuses on real-world frontend architecture, authentication flows, A
 - **State Management**: Redux Toolkit
 - **Authentication**: Firebase Authentication
 - **APIs**:
-  - TMDB (Movie data)
-  - OpenAI (GPT-powered search)
+  - TMDB API (Movies & trailers)
+  - OpenAI GPT (AI-powered search)
 - **Deployment**: Firebase Hosting
 
 ---
 
-## 🧩 Application Workflow
+## 🎥 Demo
+
+> 📌 A full working demo video of Netflix GPT is available in the repository or linked externally.
+
+---
+
+## 📸 Screenshots
+
+### 🔐 Authentication
+
+| Sign In | Sign Up |
+|--------|---------|
+| <img src="ScreenShots/SignIn.png" width="350"/> | <img src="ScreenShots/SignUp.png" width="350"/> |
+
+---
+
+### 🎬 Hero Section (Main Container)
+
+<img src="ScreenShots/Hero Section.png" width="800"/>
+
+---
+
+### ▶️ Trailer Preview
+
+<img src="ScreenShots/Trailer Preview.png" width="800"/>
+
+---
+
+### 🎞️ Movie Lists (Secondary Container)
+
+<img src="ScreenShots/Movie Lists.png" width="800"/>
+
+---
+
+### 🤖 GPT Search Feature
+
+<img src="ScreenShots/GPT Search Section.png" width="800"/>
+
+---
+
+## 🧩 Application Workflow & Features
 
 ### 🔐 Authentication Flow
 - Sign Up & Sign In pages
-- Form validation for email & password
-- Firebase authentication integration
+- Form validation
+- Firebase authentication setup
 - Create user account
-- Sign in user API
-- Sign out functionality
+- Sign In user API
+- Sign Out functionality
 - Update user profile
 - Protected routes:
   - Redirect unauthenticated users from `/browse` → `/signin`
@@ -35,98 +76,76 @@ The project focuses on real-world frontend architecture, authentication flows, A
 ---
 
 ### 🗂️ Project Architecture
-- Configured Tailwind CSS
-- Routing using React Router
-- Centralized constants file for hardcoded values
+- Tailwind CSS configuration
+- React Router based navigation
+- Centralized constants file
 - Redux Store setup with:
   - `userSlice`
   - `movieSlice`
-- Clean separation of concerns using **custom hooks**
+- Multiple custom hooks for clean logic separation
 
 ---
 
-## 🎥 Movie Features (TMDB Integration)
-
+### 🎥 Movie Features (TMDB Integration)
 - Registered app on TMDB and generated access token
-- Fetch **Now Playing Movies** using TMDB API
-- Custom hook for now playing movies
+- Fetch **Now Playing Movies**
 - Store movie data in Redux
 - Fetch trailer video data
 - Store trailer data in Redux
-- Embed YouTube trailer:
+- YouTube trailer embed with:
   - Autoplay
-  - Muted
+  - Mute
 - TMDB Image CDN integration
 
 ---
 
-## 🖥️ UI & Layout
-
-### 🧱 Main Layout
-- Header with authentication-aware UI
-- Main Container:
-  - Background trailer video
+### 🎨 UI & UX
+- Netflix-style layout
+- Responsive design using Tailwind CSS
+- Main container with:
+  - Background trailer
   - Movie title & description
   - Play & More Info buttons
-- Secondary Container:
-  - Multiple movie lists (vertically scrollable)
-
-### 🎨 Styling
-- Tailwind CSS for responsive and modern UI
-- Netflix-like layout and animations
-- Clean, scalable component structure
+- Secondary container with:
+  - Multiple vertically scrollable movie lists
 
 ---
 
-## 🤖 GPT Features
-
+### 🤖 GPT Features
 - Dedicated GPT Search Page
-- GPT Search Bar
-- AI-powered movie suggestions
-- Multilingual support in the application
-
----
-
-## ✨ Features Summary
-
-- Login / Signup with Firebase
-- Protected routes
-- Movie browsing experience
-- Trailer playback
-- AI-powered search
-- Multi-language support
-- Scalable architecture
-- Production-ready deployment
+- GPT-powered movie recommendations
+- AI-based search instead of traditional keyword search
+- Multi-language support in the application
 
 ---
 
 ## 🌍 Deployment
 
-- Deployed to **Firebase Hosting**
+- Production build created using `npm run build`
+- Deployed using **Firebase Hosting**
 - Environment variables secured
-- Production build optimization
+- Optimized for performance
 
 ---
 
-## 📌 Learnings & Takeaways
+## 📚 Learnings & Takeaways
 
-- Real-world authentication flow using Firebase
-- Redux Toolkit for scalable state management
-- Custom hooks for cleaner logic
-- API integration & error handling
-- Route protection & user session handling
+- Real-world Firebase authentication flow
+- Redux Toolkit best practices
+- Custom hooks for scalable architecture
+- API integration & async data handling
+- Route protection and session management
 - Tailwind CSS for rapid UI development
-- Integrating AI features into frontend apps
+- Integrating AI features into frontend applications
+- End-to-end deployment workflow
 
 ---
 
-## 📷 Preview
-
-
-
----
-
-## 🧑‍💻 Author
+## 👨‍💻 Author
 
 **Ayush Sahu**  
-Frontend Developer | React | Tailwind | Firebase | AI-integrated Apps
+Frontend Developer | React | Tailwind | Firebase | AI-powered Web Apps
+
+---
+
+⭐ If you like this project, feel free to star the repository!
